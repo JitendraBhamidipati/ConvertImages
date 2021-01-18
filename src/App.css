@@ -1,0 +1,106 @@
+.loaderWrap {
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.4);
+}
+.loader {
+  border: 5px solid transparent;
+  border-top: 5px solid blue;
+  border-radius: 50%;
+  width: 60px;
+  height: 60px;
+  animation: spin 2s linear infinite;
+}
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  40% {
+    transform: rotate(180deg);
+  }
+  75% {
+    transform: rotate(270deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+header h2 {
+  text-align: left;
+  font-family: 'Courier New', Courier, monospace;
+  font-style: italic;
+}
+header {
+  background-color: lightsalmon;
+  padding: 2rem;
+}
+button {
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  margin: 0 0.5rem;
+}
+input,
+select {
+  margin: 1rem 2rem;
+}
+.dropzoneContainer {
+  text-align: center;
+  margin: 2rem 0;
+  padding: 4rem;
+  background-color: lightgray;
+}
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+.tableWrap {
+  padding: 2rem 5rem;
+}
+table {
+  width: 100%;
+}
+tr,
+th,
+td {
+  text-align: center;
+  border: 1px solid black;
+}
+.form_container {
+  display: flex;
+  width: 100%;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 2rem;
+}
+.form_container div {
+  margin: 0 1rem;
+}
+.submitBtn {
+  padding: 1rem 2rem;
+  background-color: lavender;
+  border-radius: 5px;
+  font-family: 'Times New Roman', Times, serif;
+  font-size: 1.75rem;
+  border-color: lavenderblush;
+}
+.downloadBtn {
+  padding: 1rem 2rem;
+  background-color: lightgreen;
+  border-radius: 5px;
+  font-family: 'Times New Roman', Times, serif;
+  font-size: 1.75rem;
+}
+.errorMessage {
+  color: red;
+  margin: 1rem;
+  line-height: 1rem;
+  font-size: 1.5rem;
+  font-weight: bold;
+}
