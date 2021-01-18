@@ -1,2 +1,2 @@
-# ConvertImagesToWebP
-Convert all sort of images to WebP format
+# ConvertImages
+Convert Images between diffrent formats
