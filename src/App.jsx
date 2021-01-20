@@ -37,10 +37,11 @@ const App = () => {
       files.forEach(file => bodyFormData.append('files', file));
       const res = await axios({
         method: 'POST',
-        // url: 'http://localhost:3000/convertImages',
         url: 'https://jitendra-personal-website.herokuapp.com/convertImages',
         data: bodyFormData,
-        headers: { 'Content-Type': 'multipart/form-data' }
+        headers: {
+          'Content-Type': 'multipart/form-data'
+        }
       });
       if (res.data.status === 1) {
         setConvertedData(res.data.files);
