@@ -39,6 +39,7 @@ module.exports = env => {
       ]
     },
     resolve: {
+      fallback: { stream: false },
       modules: ['src', 'node_modules'],
       extensions: ['*', '.js', '.jsx', '.css', '.webp', '.jpeg', '.jpg']
     },
