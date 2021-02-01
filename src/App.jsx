@@ -197,7 +197,7 @@ const App = () => {
         </section>
       )}
       <header>
-        <h2>Convert Images 2 WebP</h2>
+        <h2>Convert Images</h2>
       </header>
       <section className="container">
         <div {...getRootProps({ className: 'dropzoneContainer' })}>
@@ -287,7 +287,7 @@ const App = () => {
                 <th>S. No.</th>
                 <th>File name</th>
                 <th>Original file size</th>
-                <th>Converted file size(Approx.)</th>
+                <th>Converted file size (Approx.)</th>
                 <th>Actions</th>
                 <th>Remarks</th>
               </tr>
