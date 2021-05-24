@@ -17,7 +17,7 @@ const App = () => {
   const [error, setError] = useState(null);
   const [rejectedFiles, setRejectedFiles] = useState([]);
   const { getRootProps, getInputProps } = useDropzone({
-    accept: 'image/jpeg, image/png,image/jpg',
+    accept: 'image/jpeg, image/png,image/jpg,image/webp',
     maxFiles: 12,
     onDrop: (acceptedFiles, filesRejected) => {
       setFiles(acceptedFiles);
@@ -66,9 +66,19 @@ const App = () => {
 
   const handleDownload = () => {
     const zip = new JSZip();
-    convertedData.map(item =>
-      zip.file(item.fileName, `data:application/pdf;base64,${item.fileData}`)
-    );
+    convertedData.forEach(item => {
+      const binary = atob(item.fileData.replace(/\s/g, ''));
+      const len = binary.length;
+      const buffer = new ArrayBuffer(len);
+      const view = new Uint8Array(buffer);
+      for (let i = 0; i < len; i += 1) {
+        view[i] = binary.charCodeAt(i);
+      }
+      const fileBlob = new Blob([view], {
+        type: 'image'
+      });
+      zip.file(item.fileName, fileBlob);
+    });
     zip.generateAsync({ type: 'base64' }).then(base64 => {
       const link = document.createElement('a');
       link.href = 'data:application/zip;base64,' + base64;
@@ -79,9 +89,6 @@ const App = () => {
   };
 
   const downloadFile = index => {
-    const dataURI = `data:application/pdf;base64,${convertedData[index].fileData}`;
-    const link = document.createElement('a');
-    document.body.appendChild(link);
     if (navigator.appVersion.toString().includes('.NET')) {
       const binary = atob(convertedData[index].fileData.replace(/\s/g, ''));
       const len = binary.length;
@@ -91,15 +98,18 @@ const App = () => {
         view[i] = binary.charCodeAt(i);
       }
       const fileBlob = new Blob([view], {
-        type: 'application/pdf'
+        type: 'image'
       });
       window.navigator.msSaveBlob(fileBlob, convertedData[index].fileName);
     } else {
+      const dataURI = `data:image/webp;base64,${convertedData[index].fileData}`;
+      const link = document.createElement('a');
+      document.body.appendChild(link);
       link.href = dataURI;
       link.download = convertedData[index].fileName;
       link.click();
+      link.remove();
     }
-    link.remove();
   };
 
   const renderFiles = files.map((file, index) => {
